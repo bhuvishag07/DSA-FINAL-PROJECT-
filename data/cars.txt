@@ -1,0 +1,5 @@
+101|Amit|SUV|4
+102|Vikram|Sedan|2
+103|Sneha|Van|6
+104|Karan|Compact|3
+105|Divya|Sedan|4

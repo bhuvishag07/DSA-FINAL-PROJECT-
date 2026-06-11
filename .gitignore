@@ -1,0 +1,16 @@
+# Object Files
+*.o
+
+# Executables
+*.exe
+*.out
+SmartRide
+
+# Build Directories
+build/
+
+# VS Code
+.vscode/
+
+# Mac Files
+.DS_Store

@@ -1,0 +1,117 @@
+
+==============================================
+      SMARTRIDE CARPOOL SIMULATOR
+==============================================
+1. Rider Management
+2. Price Management
+3. Ride Request Management
+4. Location Lookup
+5. Car Management
+6. City Map Management
+7. Best Pickup Route
+8. Toll Saver Route
+9. Smart Carpool Matching
+10. Traffic & History Controls
+11. System Dashboard
+12. Complexity Analysis
+13. Exit
+Select Option: 1
+
+1. Add Rider
+2. Search Rider
+3. Display All Riders
+4. Back
+Select: 3
+
+----------------------------------------------------------------------------------------------------
+ID        Name           Home                Office              Pickup              History   
+----------------------------------------------------------------------------------------------------
+1         Arjun          Koramangala         Whitefield          Koramangala Metro   5         
+2         Priya          HSR Layout          Whitefield          HSR Junction        12        
+3         Rohan          Bellandur           Whitefield          Bellandur Signal    8         
+4         Neha           Indiranagar         Marathahalli        Indiranagar Metro   3         
+5         Rahul          Electronic City     MG Road             EC Toll             15        
+----------------------------------------------------------------------------------------------------
+
+Press Enter to continue...
+
+==============================================
+      SMARTRIDE CARPOOL SIMULATOR
+==============================================
+1. Rider Management
+...
+Select Option: 5
+
+1. Add Car
+2. View All Cars
+3. Back
+Select: 2
+
+--- Available Cars (Max Heap by Seats) ---
+ID        Driver         Type           Seats          
+103       Sneha          Van            6              
+101       Amit           SUV            4              
+104       Karan          Compact        3              
+102       Vikram         Sedan          2              
+
+Press Enter to continue...
+
+==============================================
+      SMARTRIDE CARPOOL SIMULATOR
+==============================================
+...
+Select Option: 9
+
+--- Initializing Carpool Demonstration ---
+Request added to queue! ID: 1001 for Rider ID: 1
+Request added to queue! ID: 1002 for Rider ID: 2
+Request added to queue! ID: 1003 for Rider ID: 3
+
+==============================================
+        RIDER COMPATIBILITY ANALYSIS
+==============================================
+Koramangala <-> HSR Layout : 89%
+Koramangala <-> Bellandur : 89%
+HSR Layout <-> Bellandur : 90%
+
+Recommended Carpool Group: Arjun Priya Rohan 
+==============================================
+
+==============================================
+        SMARTRIDE CARPOOL MATCH SUMMARY
+==============================================
+Selected Vehicle: Van (Driver: Sneha)
+
+--- FARE SPLIT ANALYSIS ---
+Arjun          : ₹117.00
+Priya          : ₹107.00
+Rohan          : ₹97.00
+
+----------------------------------------------
+Pickup Sequence: Koramangala -> HSR Layout -> Bellandur
+Drop Sequence:   Whitefield
+----------------------------------------------
+Total Travel Time: 38 Minutes
+Total Distance:    30.40 KM (Estimated)
+Total Trip Cost:   ₹336.00
+==============================================
+
+==============================================
+          CARPOOL EFFICIENCY REPORT
+==============================================
+Riders Grouped:    3
+Cars Saved:        2
+Distance Saved:    16 KM
+Money Saved:       ₹240
+CO2 Reduction:     2.40 KG
+Overall Efficiency: EXCELLENT
+==============================================
+
+Press Enter to continue...
+
+==============================================
+      SMARTRIDE CARPOOL SIMULATOR
+==============================================
+...
+Select Option: 13
+Exiting SmartRide... Happy Carpooling!

@@ -1,0 +1,5 @@
+1001|1|Koramangala|Whitefield
+1002|2|HSR Layout|Whitefield
+1003|3|Bellandur|Whitefield
+1004|4|Indiranagar|Marathahalli
+1005|5|Electronic City|MG Road
