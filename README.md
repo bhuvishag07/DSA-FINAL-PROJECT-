@@ -244,32 +244,70 @@ Trip Successfully Recorded
 
 ---
 
-# 📸 2.10 Screenshots
+# 📸 Screenshots
 
-Include screenshots of the following:
+## Screenshot 1 – Main Menu
 
-### Screenshot 1
-Main Menu Interface
+<img width="2098" height="1064" alt="73C84B30-D9A7-422F-B6C3-9979740EBA70" src="https://github.com/user-attachments/assets/a0ced4f7-0ca8-4d3c-a928-2393476c4aee" />
 
-### Screenshot 2
-Ride Request Processing
 
-### Screenshot 3
-Route Planning Output
+## Screenshot 2 – Rider Management
+<img width="2016" height="1554" alt="76784853-C6EB-4D1B-BF7E-57A1DCF4C409" src="https://github.com/user-attachments/assets/2932a996-3a47-4e49-a88d-9d5cffe82731" />
 
-### Screenshot 4
-Carpool Matching Result
+Demonstrates rider registration and search operations.
 
-### Screenshot 5
-Trip History Display
+## Screenshot 3 – Car Management
+<img width="1836" height="1538" alt="2218BEE2-6BB5-4474-BA6C-EB4F4BE7798C" src="https://github.com/user-attachments/assets/b94b238d-158f-4081-8a46-7532cc4a0bdf" />
 
-> Replace this section with actual screenshots captured while running the project.
+Shows vehicle registration and management.
+
+## Screenshot 4 – Ride Request Management
+<img width="1602" height="1266" alt="E3E94B65-BE87-451D-81AD-58A2CBA384AA" src="https://github.com/user-attachments/assets/17251356-e9dc-4c39-8f76-5f2bdf91dfb1" />
+
+Displays request queue operations.
+
+## Screenshot 5 – City Map Management
+<img width="2306" height="1648" alt="FFBDFE08-2403-4E5A-AF98-DCF29D9438A3" src="https://github.com/user-attachments/assets/14bfe894-3886-4338-a2c5-64522698518f" />
+
+Shows Bengaluru city graph representation.
+
+## Screenshot 6 – Best Pickup Route
+<img width="1732" height="1190" alt="C13DCFC7-1E15-4315-890E-E7C9CF969AB4" src="https://github.com/user-attachments/assets/c8d7e009-10d9-4df9-ba87-c04dc68ca7e2" />
+
+Demonstrates shortest-path route optimization.
+
+## Screenshot 7 – Toll Saver Route
+<img width="1572" height="1054" alt="FA1C93A9-C3C3-4B97-A935-D9509CE23292" src="https://github.com/user-attachments/assets/bf5a22a2-6320-4d4d-ab53-9bc4ddf8a495" />
+
+Shows route comparison based on travel cost and time.
+
+## Screenshot 8 – Smart Carpool Matching
+<img width="1532" height="1594" alt="6EA37F09-C03C-4F0F-B239-5D7A7E7B7F62" src="https://github.com/user-attachments/assets/0ff90a2e-41e5-4003-9c50-c53298bdfdd5" />
+
+Displays rider grouping and vehicle assignment.
+
+## Screenshot 9 – Traffic & History Controls
+<img width="1528" height="1412" alt="47A6DB1D-FC8F-44BB-A3A7-848173ACF480" src="https://github.com/user-attachments/assets/c21cbcff-8f79-419c-ac76-82c44204c71b" />
+
+Shows traffic updates and trip history records.
+
+## Screenshot 10 – System Dashboard
+<img width="1124" height="1254" alt="95D84C9C-FAB4-4AE7-BB1A-4217A219D7C3" src="https://github.com/user-attachments/assets/e5a0785a-0891-4f78-9b61-c65a5bc01646" />
+
+Displays system statistics and analytics.
+
+## Screenshot 11 – Complexity Analysis
+<img width="1634" height="1374" alt="904B0CC4-C06D-41F0-AC3C-1CEF95F34439" src="https://github.com/user-attachments/assets/025533d0-5005-499c-8dab-fdea32ff6244" />
+
+Shows algorithmic complexity information.
 
 ---
 
 # 📊 2.11 Results and Observations
 
 The project successfully demonstrates the practical application of Data Structures and Algorithms in a real-world ride-sharing scenario.
+
+Beyond the mandatory requirements, SmartRide was enhanced with several additional features such as Smart Carpool Matching, Dynamic Traffic Management, Trip History Tracking, System Dashboard Analytics, Best Rider Recognition, and Complexity Analysis. These enhancements make the simulator more realistic while showcasing a broader range of Data Structures and Algorithms concepts.
 
 ### Key Results
 
