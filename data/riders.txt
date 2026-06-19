@@ -1,5 +1,6 @@
-1|Arjun|Koramangala|Whitefield|Koramangala Metro|6
-2|Priya|HSR Layout|Whitefield|HSR Junction|13
-3|Rohan|Bellandur|Whitefield|Bellandur Signal|9
+1|Arjun|Koramangala|Whitefield|Koramangala Metro|5
+2|Priya|HSR Layout|Whitefield|HSR Junction|12
+3|Rohan|Bellandur|Whitefield|Bellandur Signal|8
 4|Neha|Indiranagar|Marathahalli|Indiranagar Metro|3
 5|Rahul|Electronic City|MG Road|EC Toll|15
+291|Rakesh|River|park|Shanti|0

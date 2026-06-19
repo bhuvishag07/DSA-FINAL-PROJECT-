@@ -4,11 +4,15 @@
 #include <string>
 #include <vector>
 
-const std::string RIDERS_FILE = "data/riders.txt";
-const std::string CARS_FILE = "data/cars.txt";
+using namespace std;
 
+// File paths for persistent storage configuration.
+const string RIDERS_FILE = "data/riders.txt";
+const string CARS_FILE = "data/cars.txt";
+
+// Defines a connection between nodes for generic graph algorithms.
 struct Edge {
-  std::string destination;
+  string destination;
   int travelTime;
   int tollCost;
 };

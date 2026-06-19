@@ -9,18 +9,22 @@
 #include "TripHistory.h"
 #include <vector>
 
+using namespace std;
+
+// Stores complete information about a generated carpool group.
 struct CarpoolGroup {
   Car selectedCar;
-  std::vector<RideRequest> riders;
-  std::vector<std::string> pickupSequence;
-  std::vector<std::string> dropSequence;
+  vector<RideRequest> riders;
+  vector<string> pickupSequence;
+  vector<string> dropSequence;
   int totalTravelTime;
   double totalDistance;
   double totalCost;
-  std::vector<double> fairSplits; // Cost per individual rider
+  vector<double> fairSplits; // Cost per individual rider
   double efficiencyScore;
 };
 
+// Responsible for matching riders to the most optimal carpool groups.
 class CarpoolMatcher {
 private:
   RequestQueue &requestQueue;
@@ -31,15 +35,19 @@ private:
   TripHistory &tripHistory;
 
 public:
+  // Initializes the matcher with references to all core subsystems.
   CarpoolMatcher(RequestQueue &rq, CarSorter &cs, RoutePlanner &rp,
                  RiderManager &rm, LocationLookup &ll, TripHistory &th)
       : requestQueue(rq), carSorter(cs), routePlanner(rp), riderManager(rm),
         locationLookup(ll), tripHistory(th) {}
 
-  void calculateCompatibility();
-  CarpoolGroup matchAndOptimize();
-  void displayCarpoolSummary(const CarpoolGroup &group) const;
-  void generateEfficiencyReport(const CarpoolGroup &group) const;
+  void calculateCompatibility();   // Evaluates compatibility between riders
+  CarpoolGroup matchAndOptimize(); // Creates the optimal carpool group based on
+                                   // requests and cars available
+  void displayCarpoolSummary(const CarpoolGroup &group)
+      const; // Previews the resulting carpool allocation
+  void generateEfficiencyReport(const CarpoolGroup &group)
+      const; // Calculates and outputs the benefits of the group ride
 };
 
 #endif

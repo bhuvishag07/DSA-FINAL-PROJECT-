@@ -2,8 +2,10 @@
 #include <iomanip>
 #include <iostream>
 
+using namespace std;
+
+// Displays the car's current data details to standard output in a clean layout.
 void Car::display() const {
-  std::cout << std::left << std::setw(10) << carID << std::setw(15)
-            << driverName << std::setw(15) << vehicleType << std::setw(15)
-            << availableSeats << std::endl;
+  cout << left << setw(10) << carID << setw(15) << driverName << setw(15)
+       << vehicleType << setw(15) << availableSeats << endl;
 }

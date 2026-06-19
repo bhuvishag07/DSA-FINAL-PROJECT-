@@ -13,11 +13,14 @@
 #include <limits>
 #include <string>
 
-// Helper to clear console and wait for user
+using namespace std;
+
+// Helper to clear console and wait for user, creating a clean GUI-like
+// experience.
 void waitAndClear() {
-  std::cout << "\nPress Enter to continue...";
-  std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-  std::cin.get();
+  cout << "\nPress Enter to continue...";
+  cin.ignore(numeric_limits<streamsize>::max(), '\n');
+  cin.get();
 #ifdef _WIN32
   system("cls");
 #else
@@ -25,6 +28,7 @@ void waitAndClear() {
 #endif
 }
 
+// Pre-populates application with existing ecosystem data to ease simulation.
 void preloadData(RiderManager &rm, CarSorter &cs, CityGraph &cg,
                  LocationLookup &ll) {
   // 1. Preload Riders
@@ -64,6 +68,7 @@ void preloadData(RiderManager &rm, CarSorter &cs, CityGraph &cg,
 }
 
 int main() {
+  // Initialize foundational architectures and state managers.
   RiderManager riderManager;
   PriceManager priceManager(100.0);
   RequestQueue requestQueue;
@@ -81,54 +86,55 @@ int main() {
 
   int choice;
   while (true) {
-    std::cout << "\n=============================================="
-              << std::endl;
-    std::cout << "      SMARTRIDE CARPOOL SIMULATOR" << std::endl;
-    std::cout << "==============================================" << std::endl;
-    std::cout << "1. Rider Management" << std::endl;
-    std::cout << "2. Price Management" << std::endl;
-    std::cout << "3. Ride Request Management" << std::endl;
-    std::cout << "4. Location Lookup" << std::endl;
-    std::cout << "5. Car Management" << std::endl;
-    std::cout << "6. City Map Management" << std::endl;
-    std::cout << "7. Best Pickup Route" << std::endl;
-    std::cout << "8. Toll Saver Route" << std::endl;
-    std::cout << "9. Smart Carpool Matching" << std::endl;
-    std::cout << "10. Traffic & History Controls" << std::endl;
-    std::cout << "11. System Dashboard" << std::endl;
-    std::cout << "12. Complexity Analysis" << std::endl;
-    std::cout << "13. Exit" << std::endl;
-    std::cout << "Select Option: ";
-    std::cin >> choice;
+    // Render dynamic menu interface mapping system tools cleanly.
+    cout << "\n==============================================" << endl;
+    cout << "      SMARTRIDE CARPOOL SIMULATOR" << endl;
+    cout << "==============================================" << endl;
+    cout << "1. Rider Management" << endl;
+    cout << "2. Price Management" << endl;
+    cout << "3. Ride Request Management" << endl;
+    cout << "4. Location Lookup" << endl;
+    cout << "5. Car Management" << endl;
+    cout << "6. City Map Management" << endl;
+    cout << "7. Best Pickup Route" << endl;
+    cout << "8. Toll Saver Route" << endl;
+    cout << "9. Smart Carpool Matching" << endl;
+    cout << "10. Traffic & History Controls" << endl;
+    cout << "11. System Dashboard" << endl;
+    cout << "12. Complexity Analysis" << endl;
+    cout << "13. Exit" << endl;
+    cout << "Select Option: ";
+    cin >> choice;
 
-    if (std::cin.fail()) {
-      std::cin.clear();
-      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-      std::cout << "Invalid input. Please enter a number." << std::endl;
+    // Fail-safe handler preventing continuous loop crash on bad inputs.
+    if (cin.fail()) {
+      cin.clear();
+      cin.ignore(numeric_limits<streamsize>::max(), '\n');
+      cout << "Invalid input. Please enter a number." << endl;
       continue;
     }
 
     switch (choice) {
     case 1: { // Rider Management
       int rChoice;
-      std::cout << "\n1. Add Rider\n2. Search Rider\n3. Display All Riders\n4. "
-                   "Back\nSelect: ";
-      std::cin >> rChoice;
+      cout << "\n1. Add Rider\n2. Search Rider\n3. Display All Riders\n4. "
+              "Back\nSelect: ";
+      cin >> rChoice;
       if (rChoice == 1) {
         int id;
-        std::string name, home, office, pickup;
-        std::cout << "Enter ID, Name, Home, Office, Pickup: ";
-        std::cin >> id >> name >> home >> office >> pickup;
+        string name, home, office, pickup;
+        cout << "Enter ID, Name, Home, Office, Pickup: ";
+        cin >> id >> name >> home >> office >> pickup;
         riderManager.addRider(Rider(id, name, home, office, pickup, 0));
       } else if (rChoice == 2) {
         int id;
-        std::cout << "Enter ID: ";
-        std::cin >> id;
+        cout << "Enter ID: ";
+        cin >> id;
         Rider r;
         if (riderManager.searchRider(id, r))
           r.display();
         else
-          std::cout << "Not found.";
+          cout << "Not found.";
       } else if (rChoice == 3) {
         riderManager.displayAllRiders();
       }
@@ -136,31 +142,31 @@ int main() {
     }
     case 2: { // Price Management
       int pChoice;
-      std::cout << "\n1. Apply Surge\n2. Undo Last Change\n3. View current\n4. "
-                   "View History\nSelect: ";
-      std::cin >> pChoice;
+      cout << "\n1. Apply Surge\n2. Undo Last Change\n3. View current\n4. "
+              "View History\nSelect: ";
+      cin >> pChoice;
       if (pChoice == 1) {
         double p;
-        std::cout << "New Fare: ";
-        std::cin >> p;
+        cout << "New Fare: ";
+        cin >> p;
         priceManager.applySurge(p);
       } else if (pChoice == 2)
         priceManager.undoPriceChange();
       else if (pChoice == 3)
-        std::cout << "Current: " << priceManager.getCurrentPrice() << std::endl;
+        cout << "Current: " << priceManager.getCurrentPrice() << endl;
       else if (pChoice == 4)
         priceManager.viewPriceHistory();
       break;
     }
     case 3: { // Request Queue
       int qChoice;
-      std::cout << "\n1. Add Request\n2. View Queue\n3. Back\nSelect: ";
-      std::cin >> qChoice;
+      cout << "\n1. Add Request\n2. View Queue\n3. Back\nSelect: ";
+      cin >> qChoice;
       if (qChoice == 1) {
         int rid, id;
-        std::string s, d;
-        std::cout << "Req ID, Rider ID, Source, Dest: ";
-        std::cin >> rid >> id >> s >> d;
+        string s, d;
+        cout << "Req ID, Rider ID, Source, Dest: ";
+        cin >> rid >> id >> s >> d;
         requestQueue.addRequest({rid, id, s, d});
       } else if (qChoice == 2)
         requestQueue.viewPendingRequests();
@@ -171,13 +177,13 @@ int main() {
       break;
     case 5: { // Car Management
       int cChoice;
-      std::cout << "\n1. Add Car\n2. View All Cars\n3. Back\nSelect: ";
-      std::cin >> cChoice;
+      cout << "\n1. Add Car\n2. View All Cars\n3. Back\nSelect: ";
+      cin >> cChoice;
       if (cChoice == 1) {
         int id, seats;
-        std::string d, t;
-        std::cout << "ID, Driver, Type, Seats: ";
-        std::cin >> id >> d >> t >> seats;
+        string d, t;
+        cout << "ID, Driver, Type, Seats: ";
+        cin >> id >> d >> t >> seats;
         carSorter.addCar(Car(id, d, t, seats));
       } else if (cChoice == 2)
         carSorter.viewAllCars();
@@ -187,38 +193,38 @@ int main() {
       cityGraph.displayMap();
       break;
     case 7: { // Best Pickup Route
-      std::string s, e;
-      std::cout << "Start Node: ";
-      std::cin >> s;
-      std::cout << "End Node: ";
-      std::cin >> e;
+      string s, e;
+      cout << "Start Node: ";
+      cin >> s;
+      cout << "End Node: ";
+      cin >> e;
       RouteResult r = routePlanner.calculateFastestRoute(s, e);
       if (r.found) {
-        std::cout << "Path: ";
+        cout << "Path: ";
         for (auto p : r.path)
-          std::cout << p << " -> ";
-        std::cout << "END\nTime: " << r.totalTime
-                  << " mins, Toll: " << r.totalToll << std::endl;
+          cout << p << " -> ";
+        cout << "END\nTime: " << r.totalTime << " mins, Toll: " << r.totalToll
+             << endl;
       } else
-        std::cout << "No route found." << std::endl;
+        cout << "No route found." << endl;
       break;
     }
     case 8: { // Toll Saver
-      std::string s, e;
-      std::cout << "Start Node: ";
-      std::cin >> s;
-      std::cout << "End Node: ";
-      std::cin >> e;
+      string s, e;
+      cout << "Start Node: ";
+      cin >> s;
+      cout << "End Node: ";
+      cin >> e;
       RouteResult fastest = routePlanner.calculateFastestRoute(s, e);
       RouteResult cheapest = routePlanner.calculateCheapestRoute(s, e);
-      std::cout << "\n1. Fastest: " << fastest.totalTime
-                << " mins, Toll: " << fastest.totalToll << std::endl;
-      std::cout << "2. Cheapest: " << cheapest.totalTime
-                << " mins, Toll: " << cheapest.totalToll << std::endl;
+      cout << "\n1. Fastest: " << fastest.totalTime
+           << " mins, Toll: " << fastest.totalToll << endl;
+      cout << "2. Cheapest: " << cheapest.totalTime
+           << " mins, Toll: " << cheapest.totalToll << endl;
       break;
     }
     case 9: { // Flagship Demonstration
-      std::cout << "\n--- Initializing Carpool Demonstration ---" << std::endl;
+      cout << "\n--- Initializing Carpool Demonstration ---" << endl;
       requestQueue.addRequest({1001, 1, "Koramangala", "Whitefield"});
       requestQueue.addRequest({1002, 2, "HSR Layout", "Whitefield"});
       requestQueue.addRequest({1003, 3, "Bellandur", "Whitefield"});
@@ -233,13 +239,13 @@ int main() {
     }
     case 10: { // Extra Features: Traffic & History
       int sub;
-      std::cout << "\n1. Update Traffic Level\n2. View Trip History\n3. Best "
-                   "Rider Award\nSelect: ";
-      std::cin >> sub;
+      cout << "\n1. Update Traffic Level\n2. View Trip History\n3. Best "
+              "Rider Award\nSelect: ";
+      cin >> sub;
       if (sub == 1) {
         int t;
-        std::cout << "1. Low\n2. Medium\n3. Heavy\nSelect: ";
-        std::cin >> t;
+        cout << "1. Low\n2. Medium\n3. Heavy\nSelect: ";
+        cin >> t;
         cityGraph.updateTraffic((TrafficLevel)t);
       } else if (sub == 2)
         tripHistory.viewAllTrips();
@@ -254,9 +260,9 @@ int main() {
       dashboard.displayComplexityAnalysis();
       break;
     case 13:
-      return 0;
+      return 0; // Terminate normal execution
     default:
-      std::cout << "Invalid choice." << std::endl;
+      cout << "Invalid choice." << endl;
     }
     waitAndClear();
   }

@@ -6,22 +6,29 @@
 #include <iostream>
 #include <map>
 
+using namespace std;
+
+// Handles user data mapping using an ordered Map (BST/Red-Black Tree).
 class RiderManager {
 private:
-  std::map<int, Rider>
-      riders; // Indexed by Rider ID (BST/Red-Black Tree simulation)
-  const std::string filename = "data/riders.txt";
+  map<int, Rider> riders; // Indexed by Rider ID (BST/Red-Black Tree simulation)
+
+  // Map ensures O(log n) time complexity for search, insert, and update.
+
+  const string filename = "data/riders.txt";
 
 public:
-  RiderManager();
-  void addRider(const Rider &r);
-  bool searchRider(int id, Rider &r);
-  bool updateRider(int id, const Rider &r);
-  bool deleteRider(int id);
-  void displayAllRiders() const;
-  void saveToFile();
-  void loadFromFile();
-  int getCount() const { return riders.size(); }
+  RiderManager();                     // Ensure default setup for the manager
+  void addRider(const Rider &r);      // Insert a new user into the tree
+  bool searchRider(int id, Rider &r); // Locate specific user by their ID
+  bool updateRider(int id, const Rider &r); // Modify user profile details
+  bool deleteRider(int id);      // Completely remove user from the system
+  void displayAllRiders() const; // Iterate over text file or tree to print info
+  void saveToFile();             // Export all accounts to disk
+  void loadFromFile();           // Import existing user records
+  int getCount() const {
+    return riders.size();
+  } // Return tracked individuals count
 };
 
 #endif

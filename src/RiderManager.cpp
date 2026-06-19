@@ -4,13 +4,17 @@
 #include <iomanip>
 #include <iostream>
 
+using namespace std;
+
 RiderManager::RiderManager() { loadFromFile(); }
 
+// Adds a new rider to the system and stores the data in memory.
 void RiderManager::addRider(const Rider &r) {
-  riders[r.riderID] = r;
+  riders[r.riderID] = r; // Map insertion
   saveToFile();
 }
 
+// Access rider details securely from the Tree via ID log(n).
 bool RiderManager::searchRider(int id, Rider &r) {
   if (riders.find(id) != riders.end()) {
     r = riders[id];
@@ -19,6 +23,7 @@ bool RiderManager::searchRider(int id, Rider &r) {
   return false;
 }
 
+// Applies edits down to persistent records if a match exists.
 bool RiderManager::updateRider(int id, const Rider &r) {
   if (riders.find(id) != riders.end()) {
     riders[id] = r;
@@ -28,36 +33,39 @@ bool RiderManager::updateRider(int id, const Rider &r) {
   return false;
 }
 
+// Expunge user records and persist the structure state.
 bool RiderManager::deleteRider(int id) {
   if (riders.find(id) != riders.end()) {
-    riders.erase(id);
+    riders.erase(id); // O(log N) deletion operation
     saveToFile();
     return true;
   }
   return false;
 }
 
+// In-order traversal across BST nodes effectively sorting users by their IDs
+// automatically.
 void RiderManager::displayAllRiders() const {
-  std::cout << "\n-------------------------------------------------------------"
-               "---------------------------------------\n";
-  std::cout << std::left << std::setw(10) << "ID" << std::setw(15) << "Name"
-            << std::setw(20) << "Home" << std::setw(20) << "Office"
-            << std::setw(20) << "Pickup" << std::setw(10) << "History"
-            << std::endl;
-  std::cout << "---------------------------------------------------------------"
-               "-------------------------------------\n";
+  cout << "\n-------------------------------------------------------------"
+          "---------------------------------------\n";
+  cout << left << setw(10) << "ID" << setw(15) << "Name" << setw(20) << "Home"
+       << setw(20) << "Office" << setw(20) << "Pickup" << setw(10) << "History"
+       << endl;
+  cout << "---------------------------------------------------------------"
+          "-------------------------------------\n";
   for (const auto &pair : riders) {
     pair.second.display();
   }
-  std::cout << "---------------------------------------------------------------"
-               "-------------------------------------\n";
+  cout << "---------------------------------------------------------------"
+          "-------------------------------------\n";
 }
 
+// Save updated rider information to persistent storage.
 void RiderManager::saveToFile() {
 #if __cplusplus >= 201703L
-  std::filesystem::create_directories("data");
+  filesystem::create_directories("data");
 #endif
-  std::ofstream outFile(filename);
+  ofstream outFile(filename);
   if (outFile.is_open()) {
     for (const auto &pair : riders) {
       outFile << pair.second.serialize() << "\n";
@@ -66,11 +74,12 @@ void RiderManager::saveToFile() {
   }
 }
 
+// Loads rider records from the data file during startup.
 void RiderManager::loadFromFile() {
-  std::ifstream inFile(filename);
+  ifstream inFile(filename);
   if (inFile.is_open()) {
-    std::string line;
-    while (std::getline(inFile, line)) {
+    string line;
+    while (getline(inFile, line)) {
       if (!line.empty()) {
         Rider r = Rider::deserialize(line);
         if (r.riderID != 0) {

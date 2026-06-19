@@ -1,39 +1,43 @@
 #include "../include/TripHistory.h"
 
+using namespace std;
+
+// Add a finalized trip record to the sequential log.
 void TripHistory::addTrip(const Trip &t) { trips.push_back(t); }
 
+// Present all historical records stored in memory over time.
 void TripHistory::viewAllTrips() const {
   if (trips.empty()) {
-    std::cout << "No trip history found." << std::endl;
+    cout << "No trip history found." << endl;
     return;
   }
-  std::cout << "\n==============================================" << std::endl;
-  std::cout << "             COMPLETED TRIPS HISTORY" << std::endl;
-  std::cout << "==============================================" << std::endl;
+  cout << "\n==============================================" << endl;
+  cout << "             COMPLETED TRIPS HISTORY" << endl;
+  cout << "==============================================" << endl;
   for (const auto &t : trips) {
-    std::cout << "Trip ID:     " << t.tripID << std::endl;
-    std::cout << "Riders:      ";
+    cout << "Trip ID:     " << t.tripID << endl;
+    cout << "Riders:      ";
     for (size_t i = 0; i < t.riderNames.size(); ++i) {
-      std::cout << t.riderNames[i]
-                << (i == t.riderNames.size() - 1 ? "" : ", ");
+      cout << t.riderNames[i] << (i == t.riderNames.size() - 1 ? "" : ", ");
     }
-    std::cout << "\nVehicle:     " << t.carModel << std::endl;
-    std::cout << "Cost:        \xe2\x82\xb9" << std::fixed
-              << std::setprecision(2) << t.totalCost << std::endl;
-    std::cout << "Status:      Completed" << std::endl;
-    std::cout << "----------------------------------------------" << std::endl;
+    cout << "\nVehicle:     " << t.carModel << endl;
+    cout << "Cost:        \xe2\x82\xb9" << fixed << setprecision(2)
+         << t.totalCost << endl;
+    cout << "Status:      Completed" << endl;
+    cout << "----------------------------------------------" << endl;
   }
 }
 
-void TripHistory::searchTrip(std::string id) const {
+// Interrogates the Vector linearly to discover a target trip by ID.
+void TripHistory::searchTrip(string id) const {
   for (const auto &t : trips) {
     if (t.tripID == id) {
-      std::cout << "Trip Found!" << std::endl;
+      cout << "Trip Found!" << endl;
       // (Re-use display logic or simple print)
-      std::cout << "ID: " << t.tripID << " | Riders: " << t.riderNames.size()
-                << " | Cost: \xe2\x82\xb9" << t.totalCost << std::endl;
+      cout << "ID: " << t.tripID << " | Riders: " << t.riderNames.size()
+           << " | Cost: \xe2\x82\xb9" << t.totalCost << endl;
       return;
     }
   }
-  std::cout << "Trip not found." << std::endl;
+  cout << "Trip not found." << endl;
 }

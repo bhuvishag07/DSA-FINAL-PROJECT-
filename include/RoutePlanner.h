@@ -6,8 +6,11 @@
 #include <string>
 #include <vector>
 
+using namespace std;
+
+// Structure holding the finalized path data returned from route calculations.
 struct RouteResult {
-  std::vector<std::string> path;
+  vector<string> path;
   int totalTime;
   int totalToll;
   bool found;
@@ -15,22 +18,31 @@ struct RouteResult {
   RouteResult() : totalTime(0), totalToll(0), found(false) {}
 };
 
+// Responsible for resolving navigation algorithms across the CityGraph.
 class RoutePlanner {
 private:
   const CityGraph &cityGraph;
 
 public:
+  // Inject context of the city layout for algorithm processing.
   RoutePlanner(const CityGraph &graph) : cityGraph(graph) {}
 
-  RouteResult calculateFastestRoute(const std::string &start,
-                                    const std::string &end);
-  RouteResult calculateCheapestRoute(const std::string &start,
-                                     const std::string &end);
-  RouteResult calculateBalancedRoute(const std::string &start,
-                                     const std::string &end);
+  RouteResult calculateFastestRoute(
+      const string &start,
+      const string &end); // Implement Dijkstra's logic optimizing for shortest
+                          // travel time
+  RouteResult calculateCheapestRoute(
+      const string &start,
+      const string &end); // Implement Dijkstra's logic optimizing for lowest
+                          // financial cost
+  RouteResult calculateBalancedRoute(
+      const string &start,
+      const string &end); // Implement algorithmic blend of time vs money
 
   // For Multi-stop
-  RouteResult calculateMultiStopRoute(const std::vector<std::string> &stops);
+  RouteResult calculateMultiStopRoute(
+      const vector<string>
+          &stops); // Generate TSP/Graph logic for sequence points
 };
 
 #endif

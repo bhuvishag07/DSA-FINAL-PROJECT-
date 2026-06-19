@@ -1,55 +1,67 @@
 #include "../include/CityGraph.h"
 #include <iomanip>
 
-void CityGraph::addIntersection(const std::string &name) {
+using namespace std;
+
+// Allocate space for an upcoming location inside our adjacency list.
+void CityGraph::addIntersection(const string &name) {
   if (adjacencyList.find(name) == adjacencyList.end()) {
-    adjacencyList[name] = std::vector<Road>();
+    adjacencyList[name] = vector<Road>();
   }
 }
 
-void CityGraph::addRoad(const std::string &src, const std::string &dest,
-                        int time, int toll) {
+// Add bidirectional road connection between locations.
+void CityGraph::addRoad(const string &src, const string &dest, int time,
+                        int toll) {
   addIntersection(src);
   addIntersection(dest);
+
+  // Create edges mapping both directions to simulate two-way roads.
   adjacencyList[src].push_back({dest, time, time, toll});
   adjacencyList[dest].push_back(
       {src, time, time, toll}); // Assuming undirected roads for simplicity
 }
 
+// Adjust base graph weights using a simulated multiplier map based on
+// congestion.
 void CityGraph::updateTraffic(TrafficLevel level) {
   currentTraffic = level;
   double multiplier = (double)level;
+
+  // Re-calculate effective travel durations locally inside Adjacency List
+  // edges.
   for (auto &pair : adjacencyList) {
     for (auto &road : pair.second) {
       road.currentTravelTime =
           (int)(road.baseTravelTime * (multiplier * 0.5 + 0.5));
     }
   }
-  std::cout << "Traffic updated to Level: " << (int)level << std::endl;
+  cout << "Traffic updated to Level: " << (int)level << endl;
 }
 
+// Draw the underlying data structure representing connected neighborhoods.
 void CityGraph::displayMap() const {
-  std::cout << "\n--- Bengaluru City Map (Adjacency List) ---" << std::endl;
+  cout << "\n--- Bengaluru City Map (Adjacency List) ---" << endl;
   for (const auto &pair : adjacencyList) {
-    std::cout << pair.first << " -> ";
+    cout << pair.first << " -> ";
     for (const auto &road : pair.second) {
-      std::cout << "[" << road.destination << ": " << road.currentTravelTime
-                << "m (\xe2\x8a\xbb" << road.baseTravelTime
-                << "m), \xe2\x82\xb9" << road.tollCost << "] ";
+      cout << "[" << road.destination << ": " << road.currentTravelTime
+           << "m (\xe2\x8a\xbb" << road.baseTravelTime << "m), \xe2\x82\xb9"
+           << road.tollCost << "] ";
     }
-    std::cout << std::endl;
+    cout << endl;
   }
 }
 
-void CityGraph::viewConnectedLocations(const std::string &name) const {
+// Display immediately traversable nodes from a specified origin point.
+void CityGraph::viewConnectedLocations(const string &name) const {
   if (adjacencyList.find(name) == adjacencyList.end()) {
-    std::cout << "Location not found in map." << std::endl;
+    cout << "Location not found in map." << endl;
     return;
   }
-  std::cout << "Roads from " << name << ":" << std::endl;
+  cout << "Roads from " << name << ":" << endl;
   for (const auto &road : adjacencyList.at(name)) {
-    std::cout << "- To " << road.destination << " (" << road.currentTravelTime
-              << " mins, Toll: \xe2\x82\xb9" << road.tollCost << ")"
-              << std::endl;
+    cout << "- To " << road.destination << " (" << road.currentTravelTime
+         << " mins, Toll: \xe2\x82\xb9" << road.tollCost << ")" << endl;
   }
 }
